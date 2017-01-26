@@ -26,11 +26,10 @@
                         case 'add_post';
                             include "includes/add_post.php";
                             break;
-                        case '44';
-                            echo "Nice";
+                        case 'edit_post';
+                            include "includes/edit_post.php";
                             break;
                         case '111';
-                            echo "Nice111";
                             break;
                         case '222';
                             echo "Nice222";
