@@ -12,6 +12,7 @@
             <div class="col-md-8">
 
                 <?php
+                global $conn;
                 $query = "SELECT * FROM posts";
                 $select_all_posts_query = mysqli_query($conn, $query);
 
@@ -22,6 +23,11 @@
                     $post_date = $row['post_date'];
                     $post_image = $row['post_image'];
                     $post_content = substr($row['post_content'],0,200);
+                    $post_status = $row['post_status'];
+
+                    if($post_status == 'published'){
+
+
                 ?>
                 <h1 class="page-header">
                     Page Heading
@@ -44,7 +50,7 @@
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
-<?php } ?>
+<?php }  } ?>
 
             </div>
 
