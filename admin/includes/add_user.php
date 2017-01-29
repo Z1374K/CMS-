@@ -1,24 +1,25 @@
 <?php
-
+global $conn;
 if(isset($_POST['create_user'])){
 
 
     $user_name = $_POST['user_name'];
     $user_first_name = $_POST['user_first_name'];
     $user_last_name = $_POST['user_last_name'];
-    //$post_image = $_FILES['image']['name'];
-    //$post_image_temp = $_FILES['image']['tmp_name'];
+    $user_image = $_FILES['user_image']['name'];
+    $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_role = $_POST['user_role'];
     $user_email = $_POST['user_email'];
     $user_password= $_POST['user_password'];
 
 
-   // move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO users(user_name, user_first_name, user_last_name, user_role, user_email, user_password) VALUES('{$user_name}', '{$user_first_name}', '{$user_last_name}', '{$user_role}', '{$user_email}', '{$user_password}')";
+    move_uploaded_file($user_image_temp, "../images/$user_image");
+
+    $query ="INSERT INTO users(user_name, user_first_name, user_last_name, user_image, user_role, user_email, user_password) VALUES('{$user_name}', '{$user_first_name}', '{$user_last_name}','{$user_image}','{$user_role}', '{$user_email}','{$user_password}') ";
 
     $create_user_query = mysqli_query($conn, $query);
-    confirmQuery($create_user_query . mysqli_error($conn));
+    confirmQuery($create_user_query);
 }
 
 ?>
@@ -43,12 +44,12 @@ if(isset($_POST['create_user'])){
         <label for="user_last_name">Last Name</label>
         <input type="text" class="form-control" name="user_last_name">
     </div>
-    <!--
+
     <div class="form-group">
-        <label for="post_image">Image</label>
-        <input type="file" name="image">
+        <label for="user_image">Image</label>
+        <input type="file" name="user_image">
     </div>
-    -->
+
     <div class="form-group">
         <label for="user_email">E-mail</label>
         <input type="email" class="form-control" name="user_email">

@@ -11,14 +11,15 @@ if(isset($_POST['create_post'])){
     $post_tags = $_POST['post_tags'];
     $post_content = $_POST['post_content'];
     $post_date = date('d-m-y');
+    $post_comment_count = 4;
 
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES ({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
+    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status, post_comment_count) VALUES ({$post_category_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}','{$post_comment_count}')";
 
 $create_post_query = mysqli_query($conn, $query);
-confirmQuery($create_post_query . mysqli_error($conn));
+confirmQuery($create_post_query);
 
 }
 
@@ -44,7 +45,7 @@ confirmQuery($create_post_query . mysqli_error($conn));
         </select>
     </div>
     <div class="form-group">
-        <label for="author">Post Author</label>
+        <label for="post_author">Post Author</label>
         <input type="text" class="form-control" name="post_author">
     </div>
     <div class="form-group">
