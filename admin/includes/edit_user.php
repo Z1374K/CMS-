@@ -31,6 +31,14 @@ if(isset($_POST['edit_user'])){
 
 
     move_uploaded_file($user_image_temp, "../images/$user_image");
+    if (empty($user_image)) {
+        $query = "SELECT * FROM users WHERE user_id = $the_user_id ";
+        $select_image = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_array($select_image)) {
+            $user_image = $row['user_image'];
+        }
+
+    }
 
     $query ="UPDATE users SET user_name = '{$user_name}', user_first_name = '{$user_first_name}', user_last_name = '{$user_last_name}',user_image = '{$user_image}', user_role = '{$user_role}', user_email = '{$user_email}', user_password = '{$user_password}' WHERE user_id = $the_user_id";
 
@@ -47,17 +55,8 @@ if(isset($_POST['edit_user'])){
     </div>
     <div class="form-group">
         <select name="user_role" id="">
-
-            <?php
-            if($user_role == 'admin'){
-                echo "<option value='subscriber'>Subscriber</option>";
-            } else {
-                echo "<option value='admin'>Admin</option>";
-            }
-
-            ?>
-
             <option value="subscriber">Subscriber</option>
+            <option value="admin">Admin</option>
         </select>
     </div>
 
@@ -71,8 +70,8 @@ if(isset($_POST['edit_user'])){
     </div>
 
     <div class="form-group">
-        <label for="user_image">Image</label>
-        <input type="file" value="<?php echo $user_image;?>" name="user_image">
+        <img width="100" src="../images/<?php echo $user_image; ?>" alt="">
+        <input type="file" name="user_image">
     </div>
 
     <div class="form-group">

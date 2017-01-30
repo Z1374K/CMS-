@@ -7,8 +7,8 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Role</th>
-        <th>Change User role to</th>
-        <th>Change User role to</th>
+        <th>Change role to</th>
+        <th>Change role to</th>
         <th>Edit</th>
         <th>Delete</th>
 
@@ -62,7 +62,9 @@
         echo "<td style='text-align: center'><a href='users.php?change_role_sub={$user_id}'>Subscriber</a></td>";
         echo "<td><a href='users.php?source=edit_user&u_id={$user_id}'>Edit</a></td>";
         echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
+        echo "<td><img width='50' height='50' class ='img-responsive' src='../images/$user_image' alt='image'> </td>";
         echo "</tr>";
+
 
     }
 
