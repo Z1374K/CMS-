@@ -56,6 +56,8 @@ if (isset($_POST['update_post'])) {
     $update_query = mysqli_query($conn, $query);
     confirmQuery($update_query);
 
+    echo "<p class='bg-success'>Post Updated. <a href='../post.php?p_id={$get_post_id}'>View Post</a> or <a href='posts.php'>Edit More posts</a> </p> ";
+
 
 }
 ?>
